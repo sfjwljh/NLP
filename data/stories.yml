@@ -33,3 +33,9 @@ stories:
   steps:
   - intent: learn_school_level
   - action: answer_school_level
+  - intent: learn_school_location
+  - action: answer_school_location
+  - intent: learn_school_traffic
+  - action: answer_school_traffic
+  - intent: learn_school_policy
+  - action: answer_school_policy

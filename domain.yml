@@ -10,8 +10,13 @@ intents:
   - bot_challenge
 
   - learn_school_level
-actions:
-  - answer_school_level
+  - learn_school_location
+  - learn_school_traffic
+  - learn_school_policy
+
+entities:
+  - school
+
 
 responses:
   utter_greet:
@@ -33,9 +38,13 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_test:
-  - text: 对外经济贸易大学是一流211大学
+actions:
+  - answer_school_level
+  - answer_school_location
+  - answer_school_traffic
+  - answer_school_policy
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
