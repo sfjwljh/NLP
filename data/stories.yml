@@ -1,0 +1,65 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: learn_information
+  steps:
+  - intent: learn_school_level
+  - action: answer_school_level
+  - intent: learn_school_location
+  - action: answer_school_location
+  - intent: learn_school_traffic
+  - action: answer_school_traffic
+  - intent: learn_school_policy
+  - action: answer_school_policy
+  - intent: learn_compare_schools
+  - action: answer_compare_schools
+
+- story: recommend1
+  steps:
+    - intent: recommend_uibe_discipline
+    - action: answer_recommend_uibe_discipline
+    - or:
+      - intent: tell_num
+      - intent: tell_place
+      - intent: tell_category
+      - intent: tell_mode
+    - action: answer_recommend_uibe_discipline
+
+- story: ask_admission_line
+  steps:
+  - intent: admission_line
+  - action: action_extract_discipline
+  - action: reply_admission_line
+
+- story: ask_jiuye
+  steps:
+  - intent: jiuye
+  - action: reply_jiuye

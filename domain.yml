@@ -1,0 +1,121 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - learn_school_level
+  - learn_school_location
+  - learn_school_traffic
+  - learn_school_policy
+  - learn_compare_schools
+  - recommend_uibe_discipline
+  - tell_num
+  - tell_category
+  - tell_place
+  - tell_mode
+  - admission_line
+  - jiuye
+
+slots:
+  school:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: school
+
+
+  num:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: num
+
+  place:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: place
+
+  category:
+    type: categorical
+    influence_conversation: true
+    values:
+      - 文科
+      - 理科
+      - 物理类
+      - 历史类
+      - 综合改革
+    mappings:
+      - type: from_entity
+        entity: category
+
+  mode:
+    type: categorical
+    influence_conversation: true
+    values:
+      - 排名
+      - 分数
+    mappings:
+      - type: from_entity
+        entity: mode
+
+  discipline:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: discipline
+
+entities:
+  - school
+  - num
+  - place
+  - category
+  - mode
+  - discipline
+
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+actions:
+  - answer_school_level
+  - answer_school_location
+  - answer_school_traffic
+  - answer_school_policy
+  - answer_compare_schools
+  - answer_recommend_uibe_discipline
+  - reply_admission_line
+  - action_extract_discipline
+  - reply_jiuye
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
