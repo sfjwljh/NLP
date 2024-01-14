@@ -1,0 +1,57 @@
+version: "3.1"
+nlu:
+  - synonym: 中央财经大学
+    examples: |
+      - 中央财经
+      - 央财
+      - 中财
+      - 中央财大
+      - 中财大
+      - CUFE
+      - 大洼财经
+      - 洼财
+
+  - synonym: 上海财经大学
+    examples: |
+      - 上海财大
+      - 上海财经
+      - 上财
+      - 上财大
+      - SUFE
+
+  - synonym: 西南财经大学
+    examples: |
+      - 西财
+      - 西南财大
+      - 西南财经
+      - swufe
+
+  - synonym: 中南财经政法大学
+    examples: |
+      - 中南财
+      - 中南财大
+      - 中南财经政法
+      - 中南财经大学
+      - 中南大
+      - ZUEL
+
+  - intent: learn_compare_schools   #比较学校
+    examples: |
+      - [上财](school)和[央财](school)怎么选哪个好对比
+      - 想读金融工程，去[对外经贸](school)还是[中财大](school)或者[上财大](school)
+      - [西南财大](school)好还是[中南财](school)
+      - 怎么比较[中南财经政法](school)、[西南财经](school)、[上海财大](school)、[中央财经](school)、[北京外经贸](school)
+      - 如何在[上财](school)、[中财](school)、[贸大](school)之间选择
+      - [CUFE](school) [SUFE](school) [SWUFE](school) [ZUEL](school) [UIBE](school)这几个学校的强势学科是什么
+      - 对比[五财一贸](school)
+      - [两财一贸](school)的分数线食堂交通环境教育资源
+      
+      
+
+  - lookup: schools
+    examples: |
+      - 中南财大
+      - 上财
+      - 央财
+      - 上海财经大学
+      - 对外经济贸易大学

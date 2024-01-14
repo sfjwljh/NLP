@@ -1,0 +1,167 @@
+version: '3.1'
+
+nlu:
+  - intent: tell_num
+    examples: |
+      - 我是[356](num)[名](mode)
+      - [634](num)[分](mode)
+      - [排名](mode)为[34](num)
+      - [得分是](mode)为[677](num)
+      - [文科](category)[4178](num)[位](mode)
+      - [理工科](category)[700](num)[分](mode)
+      - 在[黑龙江](place)[物生政](category)中是第[12983](num)[名](mode)
+      - 我的[分数](mode)在[辽宁](place)省高考中是[655](num)
+
+  - intent: tell_mode
+    examples: |
+      - 不，我说的是[分数](mode)
+      - 选的是[排位](mode)的方式
+      - [889](num)是[名次](mode)
+      - [分](mode)
+      - [排名](mode)
+
+  - intent: tell_category
+    examples: |
+      - [文科](category)
+      - [理科](category)
+      - 是[物理类](category)
+      - 是[历史类](category)
+      - 我是[综合改革](category)
+      - 选的是[物化生](category)
+      - 3+1+2的是[史生地](category)
+
+  - intent: tell_place
+    examples: |
+      - 我是[吉林](place)的
+      - [四川](place)省成都市
+      - 生源地是[山东](place)
+      - 来自[陕西](place)
+      - [海南]省(place)
+
+  - intent: recommend_uibe_discipline
+    examples: |
+      - [江西](place)省[文科](category)[800](num)[名](mode)能上[对外经济贸易大学](school) 的什么专业呢？
+      - [四川](place)[理科](category)[668](num)[分](mode)能上[中国对外经贸](school)什么专业呀
+      - 我想知道在[山东](place)省[综合改革](category)高考[12980](num)[名](mode)推荐[对外经贸](school)的哪些专业
+      - [分数](mode)是[598](num)，[浙江](place)[综合](category)推荐一下我能去的专业
+      - [文史类](category)[排名](mode)[786](num)在[广东](place)能上[贸大](school)的什么专业呢？
+      - [物地政](category)[2300](num)[名](mode)能上[外经贸](school)什么专业呢
+      - [福建](place)[史化地](category)[671](num)[分](mode)能上[对外经济贸易大学](school) 的什么专业呢？
+      - [青海](place)[物生地](category)[2300](num)[名](mode)能上[中国对外经贸](school)什么专业呢
+      - [湖南](place)[史化生](category)[612](num)[分](mode)怎么填[外经贸]专业志愿
+      - [物地政](category)[2300](num)[名](mode)能上[外经贸](school)什么专业呢
+      - [湖北](place)[史化政](category)[671](num)[分](mode)能上[对外经济贸易大学](school) 的什么专业呢？
+      - [内蒙古](place)[史生政](category)[2300](num)[名](mode)能上[中国对外经贸](school)什么专业呢
+      - [西藏](place)[史生地](category)[612](num)[分](mode)怎么填[外经贸]专业志愿
+
+  #排名分数正则匹配
+  - regex: num
+    examples: |
+      - \d{1,6}
+  #地区查找表
+  - lookup: place
+    examples: |
+      - 安徽 
+      - 北京 
+      - 福建  
+      - 甘肃  
+      - 广东 
+      - 广西 
+      - 贵州 
+      - 海南 
+      - 河北 
+      - 河南 
+      - 黑龙江 
+      - 湖北 
+      - 湖南 
+      - 吉林 
+      - 江苏 
+      - 江西 
+      - 辽宁 
+      - 内蒙古 
+      - 宁夏 
+      - 青海
+      - 山东 
+      - 山西 
+      - 陕西 
+      - 上海 
+      - 四川 
+      - 天津 
+      - 新疆 
+      - 云南 
+      - 浙江 
+      - 重庆
+
+
+  - lookup: category
+    examples: |
+      - 物化政 
+      - 物化地 
+      - 物生政 
+      - 物化生 
+      - 物地政 
+      - 物生地 
+      - 史化政 
+      - 史政生 
+      - 史政地 
+      - 史化地 
+      - 史化生 
+      - 史生地
+  #定义实体的同义词替换
+  - synonym: 对外经济贸易大学
+    examples: |
+      - 中国经济贸易大学
+      - 中国外经贸大学
+      - 中国经贸大学
+      - 对外经济贸易大学
+      - 北京经济贸易大学
+      - 对外经贸大学
+      - 北京对外经贸
+      - 北京外经贸大学
+      - 外经贸大学
+      - 对外经贸
+      - 外经贸
+      - 贸大
+      - 猫大
+      - UIBE
+      - DWJM
+
+
+  - synonym: 文科
+    examples: |
+      - 文史
+      - 文史类
+
+  - synonym: 理科
+    examples: |
+      - 理工科
+      - 理工
+
+  - synonym: 物理类
+    examples: |
+      - 物化政 
+      - 物化地 
+      - 物生政 
+      - 物化生 
+      - 物地政 
+      - 物生地
+  - synonym: 历史类
+    examples: |
+      - 史化政 
+      - 史政生 
+      - 史政地 
+      - 史化地 
+      - 史化生 
+      - 史生地
+
+  - synonym: 分数
+    examples: |
+      - 分 
+      - 得分
+  - synonym: 排名
+    examples: |
+      - 名 
+      - 位次 
+      - 位 
+      - 名次 
+      - 排位

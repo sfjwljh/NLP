@@ -11,3 +11,9 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: recommend discipline in uibe
+  steps:
+  - intent: recommend_uibe_discipline
+  - action: answer_recommend_uibe_discipline
+
