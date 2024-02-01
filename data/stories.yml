@@ -12,7 +12,7 @@ stories:
 
 
 
-- story: learn_information
+- story: learn_basic_information
   steps:
   - intent: learn_school_level
   - action: utter_answer_school_level
@@ -22,8 +22,20 @@ stories:
   - action: utter_answer_school_traffic
   - intent: learn_school_policy
   - action: utter_answer_school_policy
+
+- story: learn_further_information
+  steps:
   - intent: learn_compare_schools
   - action: answer_compare_schools
+  - intent: ask_introduce_majors
+  - action: answer_introduce_majors
+  # - intent: learn_compare_majors
+  # - action: answer_compare_majors
+  - intent: admission_line
+  - action: action_extract_discipline
+  - action: reply_admission_line
+  - intent: jiuye
+  - action: reply_jiuye
 
 - story: recommend1
   steps:
@@ -35,4 +47,30 @@ stories:
       - intent: tell_category
       - intent: tell_mode
     - action: answer_recommend_uibe_discipline
+    - or:
+      - intent: tell_num
+      - intent: tell_place
+      - intent: tell_category
+      - intent: tell_mode
+    - action: answer_recommend_uibe_discipline
+    - or:
+      - intent: tell_num
+      - intent: tell_place
+      - intent: tell_category
+      - intent: tell_mode
+    - action: answer_recommend_uibe_discipline
 
+
+- story: learn_graph  #专业波动图
+  steps:
+  - intent: admission_line
+  - action: action_extract_discipline
+  - action: reply_admission_line
+  - or:
+    - intent: tell_place
+    - intent: tell_category
+  - action: reply_admission_line
+  - or:
+    - intent: tell_place
+    - intent: tell_category
+  - action: reply_admission_line

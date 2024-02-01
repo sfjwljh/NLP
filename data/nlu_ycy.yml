@@ -38,20 +38,156 @@ nlu:
   - intent: learn_compare_schools   #比较学校
     examples: |
       - [上财](school)和[央财](school)怎么选哪个好对比
-      - 想读金融工程，去[对外经贸](school)还是[中财大](school)或者[上财大](school)
       - [西南财大](school)好还是[中南财](school)
       - 怎么比较[中南财经政法](school)、[西南财经](school)、[上海财大](school)、[中央财经](school)、[北京外经贸](school)
       - 如何在[上财](school)、[中财](school)、[贸大](school)之间选择
       - [CUFE](school) [SUFE](school) [SWUFE](school) [ZUEL](school) [UIBE](school)这几个学校的强势学科是什么
       - 对比[五财一贸](school)
-      - [两财一贸](school)的分数线食堂交通环境教育资源
-      
-      
+      - [两财一贸](school)的分数线食堂交通环境师资
+      - [两财一贸](school)各有什么特点怎么选哪个好该选哪个
+      - 对比[两财一贸](school)
+      - [南开](school)还是[两财一贸](school)好
+      - [两财一贸](school)去哪个更好找到好工作前景更好
+      - [两财一贸](school)还是[南开大学](school)更容易保研或保研率更高
+      - 为了学校名气上[央财](school)不上[贸大](school)值得吗
+      - [贸大](school)师资学术氛围地理位置保研名额就业去向是不是没有[央财](school)、[上财](school)好
+      - [贸大](school)真的不如[北京邮电大学](school)吗
+      - 去[贸大](school)还是[央财](school)更好
+      - [两财一贸](school)哪个更好转专业
+      - [经管类]专业[人大](school)还是[两财一贸](school)好
+      - [经管类]专业[浙大](school)是不是没有[两财一贸](school)好
+      - [两财一贸](school)究竟该上那个
+      - [两财一贸](school)综合实力谁强
 
-  - lookup: schools
+  - intent: learn_compare_majors
     examples: |
-      - 中南财大
-      - 上财
-      - 央财
+      - 想读[金融工程](discipline)，去[对外经贸](school)还是[中财大](school)或者[上财大](school)
+      - 读[外语类](discipline)专业，去[贸大](school)还是[北外](school)
+      - [贸大](school)的[法学](discipline)比得上[五院四系](school)吗
+      - [贸大](school)的[经济学类](discipline)专业和[央财](school)比谁更强
+      - 打算学[法学](discipline)，上[中国政法大学](school)还是[对外经贸](school)
+      - 想读[金融](discipline)，去[贸大](school)还是[央财](school)
+      - 比较一下[对外经贸](school)和[上财](school)的[大数据](discipline)专业
+      - [贸大](school)和[北外](school)，哪个[法学](discipline)更好
+  # - intent: learn_compare_majors
+  #   examples: |
+  #     - [国际经济与贸易](discipline)和[税收学](discipline)哪个好
+  #     - [金融学](discipline)和[保险学](discipline)哪个有前景
+  #     - 不擅长数学，可以学[精算](discipline)或者[保险类](discipline)的专业吗
+  #     - 高中数学不好，应该学[经济学类](discipline)还是[金融](discipline)
+  #     - 学[电子商务类](discipline)好还是[汉语言文学](discipline)比较好
+  #     - 不同的[小语种](discipline)之间互相有什么区别
+  #     - [法语](discipline)还是[德语](discipline)还是[西班牙语](discipline)还是[葡萄牙语](discipline)或者[阿拉伯语](discipline)比[日语](discipline)或者[越南语](discipline)或者[俄语](discipline)或者[朝鲜语](discipline)好吗
+  #     - 学什么[小语种](discipline)以后找工作更有优势[法语](discipline)[德语](discipline)[俄语](discipline)[西班牙语](discipline)还是[日语](discipline)[朝鲜语](discipline)还是[意大利语](discipline)
+  #     - 学[金融学](discipline)或者[经济学类](discipline)的专业能找到工作吗好找工作吗
+  #     - 在贸大学[海关管理](discipline)比较好还是[行政管理](discipline)比较好
+  #     - 现在的就业环境对[国际商务友好](discipline)还是[经济学](discipline)友好
+  #     - [数据科学与大数据技术](discipline)难还是[人工智能](discipline)难
+  #     - 学[金融](discipline)有用还是[投资学](discipline)有用
+  #     - 填志愿应该选贸大的[翻译](discipline)还是[商务英语](discipline)还是[英语](discipline)
+  #     - [小语种](discipline)还是[电子商务](discipline)更推荐上
+  #     - [公共管理](discipline)还是[电子商务](discipline)考研时方向更广
+  #     - 学哪个专业能学到更多知识，收获更多实用技能，[法学](discipline)还是[大数据](discipline)
+  #     - 学[电商](discipline)和[信管](discipline)哪个更不好找工作
+  #     - 学[翻译](discipline)还是[英语](discipline)毕业后不容易被替代
+  #     - [大数据](discipline)还是[人工智能](discipline)专业性更强
+  #     - [金融科技](discipline)和[大数据](discipline)谁对数学的要求更高
+  #     - [金融数学](discipline)和[经济统计学](discipline)哪个更硬核
+  #     - 不想学数学，学[法](discipline)还是[汉语言文学](discipline)
+
+  # - intent: introduce_majors
+  #   examples: |
+  #     - [国际经济与贸易](discipline)学什么
+  #     - 对外经贸的[金融学](discipline)怎么样
+  #     - 介绍一下对外经贸的[保险类](discipline)
+  #     - 高中数学不好，应该学[经济学类](discipline)还是[金融科技](discipline)
+  #     - 学[电子商务类](discipline)好还是[汉语言文学](discipline)比较好
+  #     - 不同的[小语种](discipline)之间互相有什么区别
+  - lookup: discipline
+    examples: |
+      - 财政学
+      - 国际商务
+      - 国际经济与贸易
+      - 金融学
+      - 经济学
+      - 经济与金融
+      - 税收学
+      - 物流管理
+      - 金融工程
+      - 金融学
+      - 投资学
+      - 财务管理
+      - 工商管理
+      - 会计学
+      - 人力资源管理
+      - 市场营销
+      - 法学
+      - 翻译
+      - 商务英语
+      - 英语
+      - 电子商务
+      - 数据科学与大数据技术
+      - 信息管理与信息系统
+      - 人工智能
+      - 阿拉伯语
+      - 朝鲜语
+      - 德语
+      - 俄语
+      - 法语
+      - 日语
+      - 西班牙语
+      - 葡萄牙语
+      - 越南语
+      - 意大利语
+      - 保险学
+      - 精算学
+      - 劳动与社会保障
+      - 公共事业管理
+      - 海关管理
+      - 行政管理
+      - 汉语国际教育
+      - 汉语言文学
+      - 国际政治
+      - 政治学与行政学
+      - 金融数学
+      - 经济统计学
+
+  - lookup: school
+    examples: |
+      - 中南财经政法大学
       - 上海财经大学
+      - 中央财经大学
       - 对外经济贸易大学
+      - 西南财经大学
+      - 南开大学
+      - 中国人民大学
+      - 北京大学
+      - 清华大学
+      - 浙江大学
+      - 中国科学技术大学
+      - 上海交通大学
+      - 复旦大学
+      - 哈尔滨工业大学
+      - 北京航空航天大学
+      - 北京师范大学
+      - 华东师范大学
+      - 中国政法大学
+      - 西安电子科技大学
+      - 北京邮电大学
+      - 南京航空航天大学
+      - 北京交通大学
+      - 北京外国语大学
+      - 上海外国语大学
+      - 华北电力大学
+      - 中国地质大学（北京）
+      - 北京化工大学
+      - 北京林业大学
+      - 中央民族大学
+      - 华中师范大学
+      - 西南交通大学
+      - 中国海洋大学
+      - 东华大学
+      - 北京科技大学
+      - 吉林大学
+      - 华南理工大学
+      - 北京传媒大学

@@ -5,7 +5,8 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 from typing import Any, Text, Dict, List
-
+from rasa_sdk.events import UserUtteranceReverted
+from rasa_sdk.events import Restarted
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import pandas as pd
@@ -22,7 +23,17 @@ import json
 import re
 
 
+class CustomRestartAction(Action):
+    def name(self) -> Text:
+        return "action_custom_restart"
 
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # 在这里添加你的逻辑
+
+        # 返回Restarted事件
+        return [Restarted()]
 def get_access_token():
     url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=pGRnDoNGZBOdfRGFPUaem4yE&client_secret=e8jLFqo0YHTsr8G6gSYMYkfpg6ixa8QH"
     payload = json.dumps("")
@@ -40,7 +51,7 @@ def big_model(prompt,query,plugin_url):
     plugin_url = plugin_url + get_access_token()
 
     payload = json.dumps({
-        "query": prompt+query,
+        "query": "你是贸sir学长，一款基于RASA开源框架和大模型的高招智能问答系统，你的职责是回答和贸大本科招生相关的问题。"+prompt+query,
         "plugins": ["uuid-zhishiku"],
         "verbose": True
     })
@@ -249,7 +260,7 @@ class DisciplineEntitiesAction(Action):
         
 
         prompt=""
-        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/cqky2sy7ebaj63ak/?access_token="
+        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/70wvqrjdnhj8uetf/?access_token="
         dispatcher.utter_message(big_model(prompt,tracker.latest_message['text'],url))
         return []
 
@@ -294,10 +305,73 @@ class Answer_Admission_Line(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         discipline = tracker.slots['discipline']
-        message = str(discipline) + "专业的历年分数线波动如下："
-        dispatcher.utter_message(text=message)
+
+        # 检查必填槽位
+
+        if tracker.slots['category'] == None:
+            dispatcher.utter_message("输入科目类别无效，请问您想查询的分科类别为理科、文科、历史类、物理类还是综合改革？")
+            return [
+                # UserUtteranceReverted()
+            ]
+        else:
+            if tracker.slots['category']=='文科' or tracker.slots['category']=='历史类':
+                subject = 1
+            elif tracker.slots['category']=='理科' or tracker.slots['category']=='物理类':
+                subject = 2
+            elif tracker.slots['category'] == '综合改革':
+                subject = 3
+            else:
+                dispatcher.utter_message("请问您想查询的是分科类别为理科、文科、历史类、物理类还是综合改革？")
+                return [
+                    # UserUtteranceReverted()
+                ]
+
+        if tracker.slots['place'] == None:
+            dispatcher.utter_message("输入生源地无效，请问您的生源地省份是？")
+            return [
+                # UserUtteranceReverted()
+            ]
+        else:
+            try:
+                place = tracker.slots['place']
+                if place in ['北京','天津','上海','海南']:
+                    dispatcher.utter_message("抱歉北京,天津,上海,海南目前没有数据")
+                    return []
+                # 将实体值赋给槽位
+            except ValueError:
+                dispatcher.utter_message("请告诉我您的生源地省份")
+                return [
+                    # UserUtteranceReverted()
+                ]
+        
+        
+
+    
+        url=('https://gk-chat.cn/img/'+place+discipline+str(subject)+'.png').replace(" ","")
+        try:
+            # 发送HTTP HEAD请求，只获取响应头而不下载实际内容
+            response = requests.head(url)
+
+            # 检查响应状态码，2xx表示成功，4xx表示客户端错误，5xx表示服务器错误
+            if response.status_code // 100 == 2:
+                dispatcher.utter_message(url)
+            elif response.status_code // 100 == 4:
+                dispatcher.utter_message(place+tracker.slots['category']+discipline+"暂无数据")
+            elif response.status_code // 100 == 5:
+                dispatcher.utter_message(place+tracker.slots['category']+discipline+"暂无数据")
+            else:
+                dispatcher.utter_message(place+tracker.slots['category']+discipline+"暂无数据")
+
+
+        except requests.RequestException as e:
+            dispatcher.utter_message(place+tracker.slots['category']+discipline+"暂无数据")
+
+        
+
 
         return []
+
+
 
 class CompareSchools(Action):
     def name(self) -> Text:
@@ -310,7 +384,7 @@ class CompareSchools(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         prompt=""
-        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/cqky2sy7ebaj63ak/?access_token="
+        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/9e9s93vdceu2ne0h/?access_token="
         dispatcher.utter_message(big_model(prompt,tracker.latest_message['text'],url))
         return []
 
@@ -324,6 +398,34 @@ class CompareMajors(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         prompt=""
-        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/cqky2sy7ebaj63ak/?access_token="
+        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/f0nmdqxrfmvdcntj/?access_token="
         dispatcher.utter_message(big_model(prompt,tracker.latest_message['text'],url))
         return []
+    
+class CompareMajors(Action):
+    def name(self) -> Text:
+            return "answer_introduce_majors"
+
+    def run(
+            self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        prompt=""
+        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/9f0ghhqvrpzp8tz6/?access_token="
+        dispatcher.utter_message(big_model(prompt,tracker.latest_message['text'],url))
+        return []
+    
+class CompareMajors(Action):
+    def name(self) -> Text:
+            return "my_fallback_action"
+
+    def run(
+            self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        prompt="请在你回答的开头加入：这里是fallback回答。"
+        url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/plugin/9f0ghhqvrpzp8tz6/?access_token="
+        dispatcher.utter_message(big_model(prompt,tracker.latest_message['text'],url))
+        return [UserUtteranceReverted()]

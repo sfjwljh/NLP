@@ -162,7 +162,11 @@ nlu:
   #     - 金量
   #     - 量化
   #     - 量化金融
-
+  - intent: restart_d
+    examples: |
+      - 重置
+      - 重启
+      - 重来
 
   - intent: admission_line
     examples: |
@@ -176,6 +180,7 @@ nlu:
       - [阿拉伯语](discipline)分数线
       - [公共文化服务与管理](discipline)录取情况
       - [卫生检验与检疫](discipline)
+      # 大数据录取情况
 
   - intent: jiuye
     examples: |
@@ -190,7 +195,7 @@ nlu:
       - 毕业生就业地域
       - 毕业可以考选调生吗
       - 毕业可以去哪些大公司或重点单位吗
-      - 贸大毕业后自己创业的人多吗
+      - 贸大毕业后自己创业的人多吗在创业或自主就业方面的比例是多少
       - 贸大可以去国际组织实习吗机会多吗好吗
       - 贸大毕业生在哪些地方好找工作
       - 贸大学生毕业能进好公司吗能进世界五百强吗
@@ -205,15 +210,41 @@ nlu:
       - [阿拉伯语](discipline)就业情况如何
       - [阿拉伯语](discipline)好找工作吗
       - [阿拉伯语](discipline)找工作难度大吗
-stories:
+      - [国际经济与贸易(国际组织人才基地班、与法学双学士学位项目)](discipline)就业薪资如何
+      - [法律](discipline)毕业生通常会选择哪些职业方向
+      - [公共事业管理](discipline)毕业生通常会选择哪些领域就业
+      - [英语](discipline)毕业生国内外就业市场竞争力如何
+      - 毕业生就业主要集中在哪个行业
+      - 毕业生就业薪资水平如何
+      - 有哪些就业指导服务
+      - 就业前景如何
+      - 在就业市场上有哪些优势
+      - 在国内外就业市场上是否有特定需求或趋势
+      - 在国内外就业市场上的竞争力如何
+      - 在国内外读研时通常会选择什么专业
+      - 在国内外读研的比例是多少在国内读研比例是多少在国外读研比例是多少
 
-  - story: ask_admission_line
-    steps:
-    - intent: admission_line
-    - action: action_extract_discipline
-    - action: reply_admission_line
-
-  - story: ask_jiuye
-    steps:
-    - intent: jiuye
-    - action: reply_jiuye
+  - intent: ask_introduce_majors
+    examples: |
+      - 介绍一下对外经贸的[大数据](discipline)专业
+      - [金融数学](discipline)专业学什么
+      - [阿拉伯语](discipline)有什么主要课程
+      - 对计算机科学专业做个介绍
+      - 心理学专业有哪些主要课程
+      - 环境工程专业的学科方向是什么
+      - 国际关系专业的课程设置是怎样的
+      - 化学工程专业需要学习哪些核心课程
+      - 建筑设计专业有哪些专业方向
+      - 机械工程专业的课程结构是怎样的
+      - 人文地理学专业有关键的学科内容是什么
+      - 食品科学与工程专业需要学什么课程
+      - 社会学专业有哪些重要的学科领域
+      - 法学专业的核心课程包括哪些
+      - 生物医学工程专业的学科范围有哪些
+      - 历史学专业需要学习哪些主要课程
+      - [国际经济与贸易](discipline)学什么
+      - 对外经贸的[金融学](discipline)怎么样
+      - 介绍一下对外经贸的[保险类](discipline)
+      - 高中数学不好，应该学[经济学类](discipline)还是[金融科技](discipline)
+      - 学[电子商务类](discipline)好还是[汉语言文学](discipline)比较好
+      - 不同的[小语种](discipline)之间互相有什么区别

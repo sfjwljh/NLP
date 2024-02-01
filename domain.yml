@@ -9,16 +9,33 @@ intents:
   - learn_school_level # 学校层次，固定回答
   - learn_school_location #学校位置，固定回答
   - learn_school_traffic #交通情况，固定回答
-  - learn_school_policy #政策，固定回答导航网址     ###########调大模型直接根据文档回答
-  - learn_compare_schools #大模型
-  - learn_compare_majors # 大模型
+  - learn_school_policy #政策，固定回答导航网址     
+  - learn_compare_schools #大模型  学校整体对比
+  - learn_compare_majors # 大模型   院校间的专业对比
   - recommend_uibe_discipline #自建概率模型+返回图片        ##################改进：图片+文字返回
   - tell_num
   - tell_category
   - tell_place
   - tell_mode
-  - admission_line # 图片显示走势    ############尚未完成
+  - admission_line # 图片显示走势    
   - jiuye # 大模型
+  - ask_introduce_majors #介绍专业信息 大模型
+  - restart_d
+
+actions:
+  # - answer_school_level  #用utter代替了
+  # - answer_school_location
+  # - answer_school_traffic
+  # - answer_school_policy
+  - answer_compare_schools 
+  - answer_compare_majors 
+  - answer_recommend_uibe_discipline
+  - reply_admission_line
+  - action_extract_discipline
+  - reply_jiuye
+  - answer_introduce_majors
+  - my_fallback_action
+  - action_custom_restart
 
 slots:
   school:
@@ -109,17 +126,7 @@ responses:
 
   utter_answer_school_policy:
   - text: "可参考我校招生网http://zhaosheng.uibe.edu.cn/主页,包含最新的招生政策,欢迎报考对外经济贸易大学！"
-actions:
-  # - answer_school_level  #用utter代替了
-  # - answer_school_location
-  # - answer_school_traffic
-  # - answer_school_policy
-  - answer_compare_schools 
-  - answer_compare_majors 
-  - answer_recommend_uibe_discipline
-  - reply_admission_line
-  - action_extract_discipline
-  - reply_jiuye
+
 
 
 session_config:

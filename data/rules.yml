@@ -17,3 +17,12 @@ rules:
   - intent: recommend_uibe_discipline
   - action: answer_recommend_uibe_discipline
 
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: my_fallback_action
+
+- rule: restart-dialogue
+  steps:
+  - intent: restart_d
+  - action: action_custom_restart

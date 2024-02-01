@@ -37,6 +37,8 @@ nlu:
       - 生源地是[山东](place)
       - 来自[陕西](place)
       - [海南]省(place)
+      - 高考所在地是[山西](place)
+      
 
   - intent: recommend_uibe_discipline
     examples: |
@@ -48,11 +50,14 @@ nlu:
       - [物地政](category)[2300](num)[名](mode)能上[外经贸](school)什么专业呢
       - [福建](place)[史化地](category)[671](num)[分](mode)能上[对外经济贸易大学](school) 的什么专业呢？
       - [青海](place)[物生地](category)[2300](num)[名](mode)能上[中国对外经贸](school)什么专业呢
-      - [湖南](place)[史化生](category)[612](num)[分](mode)怎么填[外经贸]专业志愿
+      - [湖南](place)[史化生](category)[612](num)[分](mode)怎么填[外经贸](school)专业志愿
       - [物地政](category)[2300](num)[名](mode)能上[外经贸](school)什么专业呢
       - [湖北](place)[史化政](category)[671](num)[分](mode)能上[对外经济贸易大学](school) 的什么专业呢？
       - [内蒙古](place)[史生政](category)[2300](num)[名](mode)能上[中国对外经贸](school)什么专业呢
       - [西藏](place)[史生地](category)[612](num)[分](mode)怎么填[外经贸]专业志愿
+      - [湖南](place)[史化生](category)[632](num)[分](mode)，排名[2300](num)名，[外经贸](school)什么专业呢
+      - 你好，请问[湖北](place)[物化生](category)可以上[中国对外经贸](school)的哪些专业？
+      - 我高考生源地是[四川]，全省排[631]名,可以上[贸大]的什么专业呢
 
   #排名分数正则匹配
   - regex: num
@@ -125,6 +130,7 @@ nlu:
       - 猫大
       - UIBE
       - DWJM
+      - dwjm
 
 
   - synonym: 文科
